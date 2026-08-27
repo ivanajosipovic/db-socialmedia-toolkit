@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Social Media Toolkit – dental bauer</title>
+<style>
+  :root {
+    --blau: #003869;      /* Beitragskästen / Logo-Blau */
+    --pink: #fa0096;      /* Copy-Buttons */
+    --leiste: #c0dbfa;    /* obere Leiste + Kampagnen-Köpfe */
+    --ink: #10243a;
+    --muted: #5a6b7d;
+    --line: #dbe6f2;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: #ffffff;
+    color: var(--ink);
+    line-height: 1.55;
+  }
+
+  /* Obere Leiste */
+  .topbar { height: 12px; background: var(--leiste); }
+
+  /* Kopfbereich mit Logo */
+  header {
+    display: flex; align-items: center; gap: 22px; flex-wrap: wrap;
+    max-width: 1200px; margin: 0 auto;
+    padding: 22px 20px 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  .logo { height: 62px; display: block; }
+  header .titel h1 { font-size: 1.45rem; color: var(--blau); letter-spacing: -0.01em; }
+  header .titel p { font-size: 0.92rem; color: var(--muted); margin-top: 2px; }
+
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 26px 20px 60px; }
+
+  /* Kampagnen als FAQ-Akkordeon */
+  details.kampagne {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    background: #fff;
+  }
+  details.kampagne summary {
+    list-style: none;
+    cursor: pointer;
+    background: var(--leiste);
+    color: var(--blau);
+    font-size: 1.08rem;
+    font-weight: 700;
+    padding: 15px 20px;
+    display: flex; align-items: center; gap: 12px;
+    user-select: none;
+  }
+  details.kampagne summary::-webkit-details-marker { display: none; }
+  details.kampagne summary:hover { filter: brightness(0.97); }
+  summary .pfeil {
+    display: inline-block;
+    transition: transform .2s ease;
+    font-size: 0.85rem;
+  }
+  details[open] summary .pfeil { transform: rotate(90deg); }
+  summary .anzahl {
+    margin-left: auto;
+    font-size: 0.8rem; font-weight: 600;
+    background: #ffffffcc; color: var(--blau);
+    padding: 3px 12px; border-radius: 999px;
+  }
+
+  .kampagne-inhalt { padding: 20px; }
+
+  /* Kanal-Spalten */
+  .spalten {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+    gap: 18px;
+    align-items: start;
+  }
+  .spalte h3 {
+    font-size: 0.85rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--blau);
+    padding-bottom: 8px; margin-bottom: 12px;
+    border-bottom: 2px solid var(--leiste);
+  }
+
+  /* Beitragskästen */
+  .post {
+    background: var(--blau);
+    color: #fff;
+    border-radius: 12px;
+    padding: 16px 16px 14px;
+    margin-bottom: 14px;
+  }
+  .post h4 { font-size: 0.88rem; font-weight: 700; margin-bottom: 8px; color: #cfe3ff; }
+  .post .text {
+    white-space: pre-wrap;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+  .post .bild {
+    font-size: 0.8rem; color: #a8c6e8;
+    margin-bottom: 12px;
+  }
+  .post .fuss { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .copy-btn {
+    background: var(--pink); color: #fff; border: none;
+    padding: 8px 18px; border-radius: 8px;
+    font-size: 0.88rem; font-weight: 700; cursor: pointer;
+    transition: filter .15s ease;
+  }
+  .copy-btn:hover { filter: brightness(1.12); }
+  .copy-btn.copied { background: #1faa5e; }
+  .zeichen { font-size: 0.78rem; color: #a8c6e8; }
+
+  /* Hilfe + Footer */
+  .hilfe {
+    margin-top: 38px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 22px 24px;
+  }
+  .hilfe h2 { font-size: 1.05rem; color: var(--blau); margin-bottom: 8px; }
+  .hilfe p { font-size: 0.9rem; margin-bottom: 6px; }
+  footer { text-align: center; color: var(--muted); font-size: 0.82rem; margin-top: 30px; }
+</style>
+</head>
+<body>
+
+<div class="topbar"></div>
+
+<header>
+  <!-- Logo: nachgebaute SVG-Version. Für das Original-Logo diese SVG-Grafik durch
+       <img class="logo" src="logo.png" alt="dental bauer"> ersetzen und logo.png
+       mit ins GitHub-Repository hochladen. -->
+  <svg class="logo" viewBox="0 0 520 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="dental bauer Logo">
+    <rect x="0" y="0" width="254" height="260" rx="18" fill="#003869"/>
+    <rect x="264" y="0" width="256" height="260" rx="18" fill="#003869"/>
+    <text x="40" y="164" font-family="'Segoe UI', Frutiger, Arial, sans-serif" font-weight="600" font-size="54" fill="#ffffff">dental</text>
+    <text x="40" y="211" font-family="'Segoe UI', Frutiger, Arial, sans-serif" font-weight="600" font-size="54" fill="#ffffff">bauer</text>
+    <g fill="#ffffff">
+      <path d="M340,106 C332,84 333,55 341,45 C346,39.5 351,37.5 354,37 C366,45 381,49 395,50 C413,51 434,46 444.5,39.5 C449,48 452,60 451.5,71 C451,85 450,95 448,104 C413,95 375,96 340,106 Z"/>
+      <path d="M341,120 C377,110.5 414,110 449,118 C450,146 450.3,178 450,198 C449.5,212 441,221.5 429,223.5 C422,193 412,166 399,150 C397,147.5 395,147.5 393,150 C380,166 369,194 363,221 C354,217 348.5,209.5 347.5,201 C343.5,175 341.5,146 341,120 Z"/>
+    </g>
+  </svg>
+  <div class="titel">
+    <h1>Social Media Toolkit</h1>
+    <p>Kampagne aufklappen → Beitrag aussuchen → „Text kopieren“ → posten. Fertig!</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div id="kampagnen"></div>
+
+  <div class="hilfe">
+    <h2>So funktioniert’s</h2>
+    <p><strong>LinkedIn / Facebook:</strong> Neuen Beitrag erstellen, kopierten Text einfügen, ggf. Bild anhängen, veröffentlichen.</p>
+    <p><strong>Instagram:</strong> Erst das Bild auswählen, dann den Text als Bildunterschrift einfügen.</p>
+    <p><strong>WhatsApp-Status:</strong> Status → Text oder Foto wählen, kopierten Text einfügen.</p>
+  </div>
+
+  <footer>Interne Seite für Mitarbeitende von dental bauer · Fragen &amp; neue Beiträge: Marketing-Team</footer>
+</div>
+
+<script>
+/* ============================================================
+   >>> HIER KAMPAGNEN & BEITRÄGE PFLEGEN <<<
+   ------------------------------------------------------------
+   Jede Kampagne ist ein Block { name: "...", beitraege: [ ... ] }.
+   Jeder Beitrag ist ein Block { kanal, titel, text, bild }.
+
+   kanal:  "linkedin", "instagram", "facebook" oder "whatsapp"
+   titel:  interne Überschrift (wird nicht mitkopiert)
+   text:   der Beitragstext. Zeilenumbruch = \n
+   bild:   Hinweis, welches Bild dazugehört ("" = kein Bild)
+
+   Neue Kampagne: einen ganzen Kampagnen-Block kopieren und unten
+   einfügen. Neuer Beitrag: einen Beitrags-Block innerhalb von
+   beitraege: [ ... ] kopieren. Blöcke mit Komma trennen!
+   ============================================================ */
+const kampagnen = [
+  {
+    name: "Karriere & Ausbildung [BEISPIEL]",
+    beitraege: [
+      {
+        kanal: "linkedin",
+        titel: "Employer Branding",
+        text: "Hinter jeder gut laufenden Praxis steht ein starker Partner. 💙\n\nUnser Team begleitet Zahnarztpraxen und Labore in ganz Deutschland – von der Einrichtung über Material und Technik bis zum Service. Was uns dabei am meisten antreibt? Der persönliche Kontakt zu unseren Kundinnen und Kunden.\n\nDu möchtest Teil unseres Teams werden? Schau auf unserer Karriereseite vorbei!\n\n#dentalbauer #Dentalhandel #Karriere #Zahnmedizin #TeamDental",
+        bild: "Teamfoto (z. B. aus dem Ordner „Social Media/Fotos“)"
+      },
+      {
+        kanal: "instagram",
+        titel: "Azubi-Post",
+        text: "Deine Zukunft in der Dentalbranche startet hier! 🚀\n\nWir suchen Verstärkung für unser Team – ob Ausbildung, Quereinstieg oder mit Berufserfahrung. Bei uns erwartet dich ein familiäres Umfeld, spannende Aufgaben und echte Entwicklungsmöglichkeiten.\n\nAlle offenen Stellen findest du über den Link in unserer Bio! 💙\n\n#dentalbauer #Ausbildung #Jobs #Karriere #Dental #JoinTheTeam",
+        bild: "Azubi-/Teamfoto oder Recruiting-Grafik"
+      },
+      {
+        kanal: "whatsapp",
+        titel: "Stellenanzeige im Status",
+        text: "Wir stellen ein! 🙌 Lust auf einen Job in der Dentalbranche? Alle offenen Stellen auf unserer Karriereseite – gerne weitersagen! 💙",
+        bild: "Recruiting-Grafik im Hochformat"
+      }
+    ]
+  },
+  {
+    name: "Messe-Auftritt [BEISPIEL]",
+    beitraege: [
+      {
+        kanal: "linkedin",
+        titel: "Messe-Ankündigung",
+        text: "Wir sind dabei! 🎉\n\nBesuchen Sie uns auf der [MESSE-NAME] am [DATUM] – Stand [NUMMER]. Unser Team zeigt Ihnen die neuesten Lösungen für Praxis und Labor und freut sich auf den persönlichen Austausch.\n\n👉 Vereinbaren Sie gern vorab einen Termin mit Ihrem Ansprechpartner.\n\n#dentalbauer #Messe #Dental #Praxiseinrichtung",
+        bild: "Messe-Grafik oder Standfoto"
+      },
+      {
+        kanal: "facebook",
+        titel: "Messe-Einladung",
+        text: "Save the date! 📅\n\nSie finden uns auf der [MESSE-NAME] am [DATUM] an Stand [NUMMER]. Kommen Sie vorbei – wir freuen uns auf Ihren Besuch und gute Gespräche!\n\nIhr Team von dental bauer",
+        bild: "Messe-Grafik"
+      },
+      {
+        kanal: "whatsapp",
+        titel: "Messe-Teaser im Status",
+        text: "Wir sehen uns auf der [MESSE-NAME]! 🎉 Stand [NUMMER] – kommt vorbei! 💙 #dentalbauer",
+        bild: "Messe-Grafik im Hochformat"
+      }
+    ]
+  },
+  {
+    name: "Team & Einblicke [BEISPIEL]",
+    beitraege: [
+      {
+        kanal: "instagram",
+        titel: "Behind the Scenes",
+        text: "Ein Blick hinter die Kulissen 👀✨\n\nSo sieht ein ganz normaler Tag bei uns aus – vom ersten Kaffee bis zur letzten Lieferung. Danke an das ganze Team, das jeden Tag dafür sorgt, dass unsere Kundinnen und Kunden bestens versorgt sind! 💙\n\n#dentalbauer #BehindTheScenes #TeamWork #Dental #Arbeitsalltag",
+        bild: "Foto oder kurzes Video aus dem Arbeitsalltag"
+      },
+      {
+        kanal: "facebook",
+        titel: "Danke an unsere Kunden",
+        text: "DANKE! 💙\n\nOhne unsere Kundinnen und Kunden wären wir nicht da, wo wir heute sind. Vielen Dank für Ihr Vertrauen und die langjährige Zusammenarbeit – wir freuen uns auf alles, was noch kommt!\n\nIhr Team von dental bauer",
+        bild: "Teamfoto oder Danke-Grafik"
+      }
+    ]
+  }
+];
+/* ============= AB HIER NICHTS MEHR ÄNDERN ============= */
+
+const kanalReihenfolge = ["linkedin", "instagram", "facebook", "whatsapp"];
+const kanalName = { linkedin: "LinkedIn", instagram: "Instagram", facebook: "Facebook", whatsapp: "WhatsApp-Status" };
+
+function render() {
+  const container = document.getElementById("kampagnen");
+  container.innerHTML = "";
+  kampagnen.forEach((k, i) => {
+    const det = document.createElement("details");
+    det.className = "kampagne";
+    if (i === 0) det.open = true;
+
+    const sum = document.createElement("summary");
+    const pfeil = document.createElement("span");
+    pfeil.className = "pfeil";
+    pfeil.textContent = "▶";
+    const name = document.createElement("span");
+    name.textContent = k.name;
+    const anzahl = document.createElement("span");
+    anzahl.className = "anzahl";
+    anzahl.textContent = k.beitraege.length === 1 ? "1 Beitrag" : k.beitraege.length + " Beiträge";
+    sum.appendChild(pfeil); sum.appendChild(name); sum.appendChild(anzahl);
+    det.appendChild(sum);
+
+    const inhalt = document.createElement("div");
+    inhalt.className = "kampagne-inhalt";
+    const spalten = document.createElement("div");
+    spalten.className = "spalten";
+
+    kanalReihenfolge.forEach(kanal => {
+      const posts = k.beitraege.filter(b => b.kanal === kanal);
+      if (posts.length === 0) return;
+      const spalte = document.createElement("div");
+      spalte.className = "spalte";
+      const h = document.createElement("h3");
+      h.textContent = kanalName[kanal] || kanal;
+      spalte.appendChild(h);
+      posts.forEach(b => spalte.appendChild(postBox(b)));
+      spalten.appendChild(spalte);
+    });
+
+    inhalt.appendChild(spalten);
+    det.appendChild(inhalt);
+    container.appendChild(det);
+  });
+}
+
+function postBox(b) {
+  const box = document.createElement("div");
+  box.className = "post";
+
+  const h = document.createElement("h4");
+  h.textContent = b.titel;
+  box.appendChild(h);
+
+  const text = document.createElement("div");
+  text.className = "text";
+  text.textContent = b.text;
+  box.appendChild(text);
+
+  if (b.bild) {
+    const bild = document.createElement("div");
+    bild.className = "bild";
+    bild.textContent = "🖼️ Bild: " + b.bild;
+    box.appendChild(bild);
+  }
+
+  const fuss = document.createElement("div");
+  fuss.className = "fuss";
+  const btn = document.createElement("button");
+  btn.className = "copy-btn";
+  btn.textContent = "📋 Text kopieren";
+  btn.onclick = () => kopieren(b.text, btn);
+  const zeichen = document.createElement("span");
+  zeichen.className = "zeichen";
+  zeichen.textContent = b.text.length + " Zeichen";
+  fuss.appendChild(btn); fuss.appendChild(zeichen);
+  box.appendChild(fuss);
+
+  return box;
+}
+
+function kopieren(text, btn) {
+  const fertig = () => {
+    const alt = btn.textContent;
+    btn.textContent = "✅ Kopiert!";
+    btn.classList.add("copied");
+    setTimeout(() => { btn.textContent = alt; btn.classList.remove("copied"); }, 1800);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(fertig).catch(() => fallbackKopieren(text, fertig));
+  } else {
+    fallbackKopieren(text, fertig);
+  }
+}
+
+function fallbackKopieren(text, fertig) {
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); fertig(); } catch (e) {}
+  document.body.removeChild(ta);
+}
+
+render();
+</script>
+</body>
+</html>
